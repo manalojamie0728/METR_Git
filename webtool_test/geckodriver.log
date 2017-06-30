@@ -1,0 +1,9 @@
+1498620434484	geckodriver	INFO	Listening on 127.0.0.1:64591
+1498620436434	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\firefox.exe with args ["-marionette"]
+1498620441037	Marionette	INFO	Listening on port 64597
+1498620441657	Marionette	WARN	TLS certificate errors will be ignored for this session
+1498620462788	Marionette	INFO	New connections will no longer be accepted
+ource://devtools/server/actors/highlighters/auto-refresh.js, line 202: TypeError: can't convert null to object
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/highlighters/auto-refresh.js, line 202: TypeError: can't convert null to object
+JavaScript error: resource://gre/modules/commonjs/toolkit/loader.js -> resource://devtools/server/actors/highlighters/auto-refresh.js, line 202: TypeError: can't convert null to object
+1498615499841	Marionette	INFO	Ceased listening
