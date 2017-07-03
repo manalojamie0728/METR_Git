@@ -23,7 +23,7 @@ name = ['', 'Spotify_003']
 keyword = ['', 'spotify_003']
 param = ['', 'foo']
 
-print("TEST 1: Check Account Existence"),
+print("TEST 1: Check Product Existence"),
 InputInfo = driver.find_element_by_name("name")
 InputInfo.clear()
 InputInfo.send_keys('Spotify_001')
@@ -32,7 +32,7 @@ InputInfo.clear()
 InputInfo.send_keys('spotify_001')
 InputInfo.submit()
 time.sleep(1)
-print("[PASS]" if ("Username already taken." in driver.page_source) else "[FAIL]")
+print("[PASS]" if ("This Name is already taken." in driver.page_source) else "[FAIL]")
 
 for i in range(0, 2):
 	for j in range(0, 2):

@@ -25,11 +25,25 @@ pwd = ['', 'asdfghj', 'havey123']
 test_type = ['Username Blank', 'Username Filled']
 r_path = ['' , 'res01']
 
+print("TEST 1: Check Account Existence"),
+InputInfo = driver.find_element_by_name("name")
+InputInfo.clear()
+InputInfo.send_keys('neo')
+InputInfo = driver.find_element_by_name("password")
+InputInfo.clear()
+InputInfo.send_keys('asdf')
+InputInfo = driver.find_element_by_name("verify_password")
+InputInfo.clear()
+InputInfo.send_keys('asdf')
+InputInfo.submit()
+time.sleep(1)
+print("[PASS]" if ("This Username is already taken." in driver.page_source) else "[FAIL]")
+
 # First User - No Resource Path
 for i in range(0, 2):
 	for j in range(0, 3):
 		for k in range(0, 3):
-			print("TEST "+str(9*i+3*j+k+1)+": "+test_type[(9*i+3*j+k)/9]+", No Resource Path"),
+			print("TEST "+str(9*i+3*j+k+2)+": "+test_type[(9*i+3*j+k)/9]+", No Resource Path"),
 			InputInfo = driver.find_element_by_name("name")
 			InputInfo.clear()
 			InputInfo.send_keys(user[i])
@@ -49,23 +63,34 @@ time.sleep(1)
 user_id1 = driver.current_url.split('/')[-1]
 driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts")
 
-print("TEST 19: Check Added User In List"),
+print("TEST 20: Check Added User In List"),
 driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
 time.sleep(1)
 print("[PASS]" if ("lady_gaga" in driver.page_source) else "[FAIL]")
 
-print("TEST 20: Check Added User's Details"),
+print("TEST 21: Check Added User's Details"),
 driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts/details/"+user_id1)
 time.sleep(1)
 print("[PASS]" if ("Details of account lady_gaga" in driver.page_source) else "[FAIL]")
 
-"""
+print("TEST 22: Delete Added API User From List"),
+driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts")
+driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
+driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts/delete/"+user_id1)
+time.sleep(1)
+print("[PASS]" if ("Successfully deleted OTT API account." in driver.page_source) else "[FAIL]")
+
+print("TEST 23: Check Deletion Success"),
+driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
+time.sleep(1)
+print("[PASS]" if not ("lady_gaga" in driver.page_source) else "[FAIL]")
+
 time.sleep(1)
 driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts/add")
 
 # Second User - With Resource Path
 for i in range(0, 2):
-	print("TEST "+str(21+i)+": Create with Resource Path"),
+	print("TEST "+str(24+i)+": Create with Resource Path"),
 	InputInfo = driver.find_element_by_name("name")
 	InputInfo.clear()
 	InputInfo.send_keys('katy_perry')
@@ -76,8 +101,7 @@ for i in range(0, 2):
 	InputInfo.clear()
 	InputInfo.send_keys('california')
 	if i == 0:
-		time.sleep(1)
-		driver.find_element_by_class("btn-primary").click()
+		driver.find_element_by_xpath("//tfoot/tr/th/button").send_keys(Keys.ENTER)
 		driver.find_element_by_xpath("//input[@name='permissions[0][http_methods][]'][@value='GET']").click()
 	InputInfo = driver.find_element_by_name("permissions[0][path]")
 	InputInfo.clear()
@@ -88,19 +112,31 @@ for i in range(0, 2):
 		print("[PASS]" if not("Successfully created ott account." in driver.page_source) else "[FAIL]")
 	else:
 		print("[PASS]" if ("Successfully created ott account." in driver.page_source) else "[FAIL]")
-"""
+time.sleep(1)
+user_id2 = driver.current_url.split('/')[-1]
+driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts")
 
-print("TEST 21: Delete Added API User From List"),
+print("TEST 24: Check Added User In List"),
+driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
+time.sleep(1)
+print("[PASS]" if ("katy_perry" in driver.page_source) else "[FAIL]")
+
+print("TEST 25: Check Added User's Details"),
+driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts/details/"+user_id2)
+time.sleep(1)
+print("[PASS]" if ("Details of account katy_perry" in driver.page_source) else "[FAIL]")
+
+print("TEST 26: Delete Added API User From List"),
 driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts")
 driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
-driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts/delete/"+user_id1)
+driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts/delete/"+user_id2)
 time.sleep(1)
 print("[PASS]" if ("Successfully deleted OTT API account." in driver.page_source) else "[FAIL]")
 
-print("TEST 22: Check Deletion Success"),
+print("TEST 27: Check Deletion Success"),
 driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
 time.sleep(1)
-print("[PASS]" if not ("lady_gaga" in driver.page_source) else "[FAIL]")
+print("[PASS]" if not ("katy_perry" in driver.page_source) else "[FAIL]")
 
 time.sleep(3)
 driver.quit()

@@ -23,11 +23,22 @@ name = ['', 'Hooq_003']
 keyword = ['', 'hooq_003']
 param = ['', 'foo']
 
+print("TEST 1: Check Product Existence"),
+InputInfo = driver.find_element_by_name("name")
+InputInfo.clear()
+InputInfo.send_keys('Hooq_001')
+InputInfo = driver.find_element_by_name("keyword")
+InputInfo.clear()
+InputInfo.send_keys('hooq_001')
+InputInfo.submit()
+time.sleep(1)
+print("[PASS]" if ("This Name is already taken." in driver.page_source) else "[FAIL]")
+
 for i in range(0, 2):
 	for j in range(0, 2):
 		for k in range(0, 2):
 			for l in range(0, 2):
-				print("TEST "+str(8*i+4*j+2*k+l+1)+":"),
+				print("TEST "+str(8*i+4*j+2*k+l+2)+":"),
 				InputInfo = driver.find_element_by_name("name")
 				InputInfo.clear()
 				InputInfo.send_keys(name[l])
@@ -50,30 +61,27 @@ time.sleep(1)
 prod_id = driver.current_url.split('/')[-1]
 driver.get("http://localhost/otti_webtool/index.php/ott_products")
 
-print("TEST 17: Check Added Product In List"),
+print("TEST 18: Check Added Product In List"),
 driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
 time.sleep(1)
 print("[PASS]" if ("Hooq_003" in driver.page_source) else "[FAIL]")
 
-print("TEST 18: Check Added Product's Details"),
+print("TEST 19: Check Added Product's Details"),
 driver.get("http://localhost/otti_webtool/index.php/ott_products/details/"+prod_id)
 time.sleep(1)
 print("[PASS]" if ("Product Details" in driver.page_source) else "[FAIL]")
 
-print("TEST 19: Delete Added Product From List"),
+print("TEST 20: Delete Added Product From List"),
 driver.get("http://localhost/otti_webtool/index.php/ott_products")
 driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
 driver.get("http://localhost/otti_webtool/index.php/ott_products/delete/"+prod_id)
 time.sleep(1)
 print("[PASS]" if ("Successfully deleted OTT Product." in driver.page_source) else "[FAIL]")
 
-print("TEST 20: Check Deletion Success"),
+print("TEST 21: Check Deletion Success"),
 driver.find_element_by_id("dd_recsperpage").send_keys("50", Keys.ENTER)
 time.sleep(1)
 print("[PASS]" if not ("Hooq_003" in driver.page_source) else "[FAIL]")
-
-#time.sleep(1)
-#driver.find_element_by_xpath("//*[contains(text(), 'Add New Product')]").click()
 
 time.sleep(3)
 driver.quit()
