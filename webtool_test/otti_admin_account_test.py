@@ -1,21 +1,9 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
-
-driver = webdriver.Firefox()
-driver.get("http://localhost/otti_webtool")
-
-print "[[TEST IV: Admin Account Page]]"
-name = ['', 'METR Admin']
-email = ['', 'metr.com', 'metr.emailadd@metr.com.ph']
-new_pwd = ['', 'Matsuri', 'PuyoPuy0', 'H0jo$a7ok0']
-curr_pwd = ['', 'admin', 'M7Ght33Mou$e']
-test_cases = ['Blank Admin/Blank Email', 'Blank Admin/Wrong Email', 'Blank Admin/Correct Email',
-				'Filled Admin/Blank Email', 'Filled Admin/Wrong Email', 'Filled Admin/Correct Email']
-pass_cycle = ['@dmIn123', 'M7Ght33Mou$e', 'H0jo$a7ok0', 'P@ric3$t4R', '0r4nGut@n', 'H@ppYMar74']
-# Current Password: M7Ght33Mou$e
 
 def Login(curr):
 	InputCreds = driver.find_element_by_name("username")
@@ -25,8 +13,21 @@ def Login(curr):
 	InputCreds.submit()
 	time.sleep(1)
 
+driver = webdriver.Firefox()
+driver.get("http://localhost/otti_webtool")
+
+print "[[TEST IV: Admin Account Page]]"
+name = ['', 'METR Admin']
+email = ['', 'metr.com', 'metr.emailadd@metr.com.ph']
+new_pwd = ['', 'Matsuri', 'PuyoPuy0', 'P@ric3$t4R']
+curr_pwd = ['', 'admin', 'H0jo$a7ok0']
+test_cases = ['Blank Admin/Blank Email', 'Blank Admin/Wrong Email', 'Blank Admin/Correct Email',
+				'Filled Admin/Blank Email', 'Filled Admin/Wrong Email', 'Filled Admin/Correct Email']
+pass_cycle = ['@dmIn123', 'M7Ght33Mou$e', 'H0jo$a7ok0', 'P@ric3$t4R', '0r4nGut@n', 'H@ppYMar74']
+# Current Password: H0jo$a7ok0
+
 # Initialize by Logging In First
-Login(curr_pwd[2])
+Login(pass_cycle[2])
 
 # Part A: Edit Account Details
 for i in range(0, 2):

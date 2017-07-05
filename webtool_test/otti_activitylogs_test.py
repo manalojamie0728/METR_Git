@@ -16,13 +16,13 @@ def Login(curr):
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST VII: User Activity Logs]] (Assumes you have done TEST VI beforehand)"
+print "[[TEST VII: User Activity Logs]] (Assumes you have done TEST VI beforehand)" # CLEAR!
 actions = ['Unblock', 'Block', 'Reset Password']
 pass_cycle = ['@dmIn123', 'M7Ght33Mou$e', 'H0jo$a7ok0', 'P@ric3$t4R', '0r4nGut@n', 'H@ppYMar74']
-# Current Password: M7Ght33Mou$e
+# Current Password: H0jo$a7ok0
 
 # Initialize by Logging In First
-Login(pass_cycle[1])
+Login(pass_cycle[2])
 driver.get("http://localhost/otti_webtool/index.php/userlogs")
 
 print("TEST 1: Apply Filter in Username - admin"),

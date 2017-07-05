@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -8,9 +8,9 @@ import time
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST I: Log-In Page]]"
+print "[[TEST I: Log-In Page]]" # CLEAR!
 user = ['', 'adm1n', 'admin']
-pwd = ['', 'password', 'admin']
+pwd = ['', 'password', 'H0jo$a7ok0']
 test_cases = ['Blank User/Blank Password', 'Blank User/Wrong Password', 'Blank User/Right Password',
 				'Wrong User/Blank Password', 'Wrong User/Wrong Password', 'Wrong User/Right Password',
 				'Right User/Blank Password', 'Right User/Wrong Password', 'Right User/Right Password']

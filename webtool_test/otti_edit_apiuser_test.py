@@ -1,21 +1,27 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
+def Login(curr):
+	InputCreds = driver.find_element_by_name("username")
+	InputCreds.send_keys("admin")
+	InputCreds = driver.find_element_by_name("password")
+	InputCreds.send_keys(curr)
+	InputCreds.submit()
+	time.sleep(1)
+
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST III-2: Edit API User]]"
+print "[[TEST III-2: Edit API User]]" # CLEAR!
+pass_cycle = ['@dmIn123', 'M7Ght33Mou$e', 'H0jo$a7ok0', 'P@ric3$t4R', '0r4nGut@n', 'H@ppYMar74']
+# Current Password: H0jo$a7ok0
+
 # Initialize by Logging In First
-InputCreds = driver.find_element_by_name("username")
-InputCreds.send_keys("admin")
-InputCreds = driver.find_element_by_name("password")
-InputCreds.send_keys("admin")
-InputCreds.submit()
+Login(pass_cycle[2])
 
 time.sleep(1)
 driver.get("http://localhost/otti_webtool/index.php/ott_api_accounts/add")

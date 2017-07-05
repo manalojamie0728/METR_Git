@@ -16,15 +16,15 @@ def Login(curr):
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST V: Add/Edit User Group]]"
+print "[[TEST V: Add/Edit User Group]]" # CLEAR!
 group_name = ['', 'abacada', 'GroupAwesome']
 new_name = ['', 'abacada', 'TeamScholarly']
 test_cases = ['Group Name Empty', 'Group Name Exists', 'Group Name Valid']
 pass_cycle = ['@dmIn123', 'M7Ght33Mou$e', 'H0jo$a7ok0', 'P@ric3$t4R', '0r4nGut@n', 'H@ppYMar74']
-# Current Password: M7Ght33Mou$e
+# Current Password: H0jo$a7ok0
 
 # Initialize by Logging In First
-Login(pass_cycle[1])
+Login(pass_cycle[2])
 
 # Part A: Add User Group
 driver.get("http://localhost/otti_webtool/index.php/groups/add")

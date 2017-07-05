@@ -16,7 +16,7 @@ def Login(curr):
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST VIII: Webtool Settings]]"
+print "[[TEST VIII: Webtool Settings]]" # CLEAR!
 schema_assert = [5, 8, 30, 5, 180, 1, 1, 1, 1, 1]
 new_vals = [3, 10, 15, 1, 120, 2, 2, 2, 2, 2]
 assert_case = ['Max Password Retry Count', 'Min Password Length', 'Password Expiry', 'Password No Reuse',
@@ -26,10 +26,10 @@ field_names = ['MAX_PASSWORD_RETRY_COUNT', 'MIN_PASSWORD_LENGTH', 'PASSWORD_EXPI
 			'SESSION_TIMEOUT_MINUTES', 'PASSWORD_EXPIRY_WARNING_DAYS', 'PASSWORD_MIN_ALPHA_UCASE_COUNT',
 			'PASSWORD_MIN_ALPHA_LCASE_COUNT', 'PASSWORD_MIN_DIGIT_COUNT', 'PASSWORD_MIN_SPECIAL_COUNT']
 pass_cycle = ['@dmIn123', 'M7Ght33Mou$e', 'H0jo$a7ok0', 'P@ric3$t4R', '0r4nGut@n', 'H@ppYMar74']
-# Current Password: M7Ght33Mou$e
+# Current Password: H0jo$a7ok0
 
 # Initialize by Logging In First
-Login(pass_cycle[1])
+Login(pass_cycle[2])
 driver.get("http://localhost/otti_webtool/index.php/settings/webtool_settings")
 
 # Part A: Assertion of Present Values
@@ -49,7 +49,10 @@ for i in range(0, 11):
 		driver.find_element_by_name(field_names[i]).clear()
 	InputInfo.submit()
 	time.sleep(1)
-	print("[PASS]" if not ("Successfully saved webtool settings." in driver.page_source) else "[FAIL]")
+	if i < 10:
+		print("[PASS]" if not ("Successfully saved webtool settings." in driver.page_source) else "[FAIL]")
+	else:
+		print("[PASS]" if ("Successfully saved webtool settings." in driver.page_source) else "[FAIL]")
 
 # Part C: Assertion of Updated Values
 for i in range(0, 10):
