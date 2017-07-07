@@ -16,7 +16,7 @@ def Login(curr):
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST V: Add/Edit User Group]]" # CLEAR!
+print "[[TEST V: Add/Edit User Group]]" # CLEAR! ***
 group_name = ['', 'abacada', 'GroupAwesome']
 new_name = ['', 'abacada', 'TeamScholarly']
 test_cases = ['Group Name Empty', 'Group Name Exists', 'Group Name Valid']

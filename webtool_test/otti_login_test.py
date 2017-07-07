@@ -8,7 +8,7 @@ import time
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST I: Log-In Page]]" # CLEAR!
+print "[[TEST I: Log-In Page]]" # CLEAR! ***
 user = ['', 'adm1n', 'admin']
 pwd = ['', 'password', 'H0jo$a7ok0']
 test_cases = ['Blank User/Blank Password', 'Blank User/Wrong Password', 'Blank User/Right Password',

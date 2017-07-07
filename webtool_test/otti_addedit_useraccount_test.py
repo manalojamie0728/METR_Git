@@ -16,13 +16,13 @@ def Login(uname, curr):
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST VI: User Account Operations]]" # CLEAR!
+print "[[TEST VI: User Account Operations]]" # CLEAR! ***
 group = ['', 'GroupAdd', 'GroupEdit']
-username = ['', 'UA0011', 'UA0012', 'UA0013']
+username = ['', 'User11', 'User12', 'User13']
 pwd = ['', 'saranghae', 'LifeSt3@ler', 'W@rl0rdZ']
 new_pwd = ['', 'kudosaranghae', 'Caf3L@te']
-email = ['', 'UA0011@metr.com.ph', 'UA0012@metr.com.ph', 'UA0013@metr.com.ph']
-new_email = ['', 'UA0013_new@metr.com.ph']
+email = ['', 'User11@metr.com.ph', 'User12@metr.com.ph', 'User13@metr.com.ph']
+new_email = ['', 'User13_new@metr.com.ph']
 user_expiry = ['', '2016-07-01', '2018-07-01']
 user_id = []
 test_cases01 = ['Add - Missing Group', 'Add - Missing Username', 'Add - Password Test (Blank/Blank)',
@@ -123,7 +123,7 @@ for i in range(0, 3):
 	time.sleep(1)
 	print("[PASS]" if (user_id[i] in driver.page_source) else "[FAIL]")
 
-print("TEST 19: Check Added User's (UA003) Details"),
+print("TEST 19: Check Added User's (User03) Details"),
 driver.get("http://localhost/otti_webtool/index.php/users/edit/"+user_id[2])
 time.sleep(1)
 print("[PASS]" if ("User Accounts" in driver.page_source) else "[FAIL]")
@@ -137,19 +137,19 @@ print("[PASS]" if ("Cannot delete group." in driver.page_source) else "[FAIL]")
 driver.get("http://localhost/otti_webtool/index.php/logout")
 for i in range(0, 3):
 	if i == 0: #UA01
-		print("TEST 21: UA01 - Account Expired Login"),
+		print("TEST 21: User01 - Account Expired Login"),
 		Login(username[i+1], pwd[2])
 		print("[PASS]" if ("User account expired." in driver.page_source) else "[FAIL]")
 	elif i == 1: #UA02
-		print("TEST 22: UA02 - Account Blocked Login"),
+		print("TEST 22: User02 - Account Blocked Login"),
 		Login(username[i+1], pwd[2])
 		print("[PASS]" if ("User is blocked." in driver.page_source) else "[FAIL]")
 	elif i == 2: #UA03
-		print("TEST 23: UA03 - Account Password Change Login"),
+		print("TEST 23: User03 - Account Password Change Login"),
 		Login(username[i+1], pwd[2])
-		print("[PASS]" if ("Change UA0013's Password" in driver.page_source) else "[FAIL]")
+		print("[PASS]" if ("Change User13's Password" in driver.page_source) else "[FAIL]")
 
-		print("TEST 24: UA03 - Account Password Change Process"),
+		print("TEST 24: User03 - Account Password Change Process"),
 		InputInfo = driver.find_element_by_name("old_password")
 		InputInfo.clear()
 		InputInfo.send_keys(pwd[2])
@@ -211,27 +211,27 @@ for i in range(0, 3):
 			print("[PASS]")
 time.sleep(1)
 driver.get("http://localhost/otti_webtool/index.php/logout")
-print("TEST 37: Login on New Password (UA003)"),
+print("TEST 37: Login on New Password (User03)"),
 Login(username[3], new_pwd[2])
 print("[PASS]" if ("Welcome!" in driver.page_source) else "[FAIL]")
 
 driver.get("http://localhost/otti_webtool/index.php/logout")
 Login("admin", pass_cycle[2])
 
-print("TEST 38: Check Edited User Account (UA003) in List"),
+print("TEST 38: Check Edited User Account (User03) in List"),
 driver.get("http://localhost/otti_webtool/index.php/users")
 time.sleep(1)
 driver.find_element_by_id("dd_recsperpage").send_keys("100", Keys.ENTER)
 time.sleep(1)
 print("[PASS]" if (user_id[2] in driver.page_source) else "[FAIL]")
 
-print("TEST 39: Check Edited User's (UA003) Details"),
+print("TEST 39: Check Edited User's (User03) Details"),
 driver.get("http://localhost/otti_webtool/index.php/users/edit/"+user_id[2])
 time.sleep(1)
 print("[PASS]" if ("User Accounts" in driver.page_source) else "[FAIL]")
 
 # Part E: Block/Unblock User Account
-print("TEST 40: Block User Account (UA003)"),
+print("TEST 40: Block User Account (User03)"),
 driver.get("http://localhost/otti_webtool/index.php/users")
 driver.get("http://localhost/otti_webtool/index.php/users/block/"+user_id[2])
 time.sleep(1)
@@ -244,7 +244,7 @@ print("[PASS]" if ("User is blocked." in driver.page_source) else "[FAIL]")
 
 Login("admin", pass_cycle[2])
 
-print("TEST 42: Unblock User Account (UA003)"),
+print("TEST 42: Unblock User Account (User03)"),
 driver.get("http://localhost/otti_webtool/index.php/users")
 driver.get("http://localhost/otti_webtool/index.php/users/unblock/"+user_id[2])
 time.sleep(1)

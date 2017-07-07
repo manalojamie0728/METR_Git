@@ -16,7 +16,7 @@ def Login(curr):
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST IV: Admin Account Page]]"
+print "[[TEST IV: Admin Account Page]]" # CLEAR! **
 name = ['', 'METR Admin']
 email = ['', 'metr.com', 'metr.emailadd@metr.com.ph']
 new_pwd = ['', 'Matsuri', 'PuyoPuy0', 'P@ric3$t4R']
@@ -68,6 +68,22 @@ for i in range(0, 3):
 				print("[PASS]" if not ("Successfully" in driver.page_source) else "[FAIL]")
 			else:
 				print("[PASS]" if ("Successfully" in driver.page_source) else "[FAIL]")
+
+# Optional: Rotate Password
+anchor = pass_cycle.index('H0jo$a7ok0')+1
+driver.get("http://localhost/otti_webtool/index.php/me/change_password")
+for i in range(0, 5):
+	InputInfo = driver.find_element_by_name("old_password")
+	InputInfo.clear()
+	InputInfo.send_keys(pass_cycle[(anchor+i)%6])
+	InputInfo = driver.find_element_by_name("password")
+	InputInfo.clear()
+	InputInfo.send_keys(pass_cycle[(anchor+i+1)%6])
+	InputInfo = driver.find_element_by_name("confirm_password")
+	InputInfo.clear()
+	InputInfo.send_keys(pass_cycle[(anchor+i+1)%6])
+	InputInfo.submit()
+	time.sleep(1)
 
 time.sleep(2)
 driver.quit()

@@ -16,7 +16,7 @@ def Login(curr):
 driver = webdriver.Firefox()
 driver.get("http://localhost/otti_webtool")
 
-print "[[TEST VIII: Webtool Settings]]" # CLEAR!
+print "[[TEST VIII: Webtool Settings]]" # CLEAR! ***
 schema_assert = [5, 8, 30, 5, 180, 1, 1, 1, 1, 1]
 new_vals = [3, 10, 15, 1, 120, 2, 2, 2, 2, 2]
 assert_case = ['Max Password Retry Count', 'Min Password Length', 'Password Expiry', 'Password No Reuse',
