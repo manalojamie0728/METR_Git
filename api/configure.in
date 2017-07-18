@@ -1,0 +1,46 @@
+AC_INIT(Makefile.am)
+
+AM_CONFIG_HEADER(config.h)
+
+AM_INIT_AUTOMAKE(metrutil, 0.1.5-rc1)
+
+AC_CHECK_LIB(pthread, pthread_create, ,AC_MSG_ERROR(pthread_create not functioning))
+AC_CHECK_LIB(nsl, main)
+AC_CHECK_LIB(rt, main)
+AC_CHECK_LIB(socket, socket)
+AC_CHECK_LIB(m, matherr)
+
+AC_PROG_CC
+AC_PROG_CXX
+AC_PROG_INSTALL
+AC_PROG_RANLIB
+AM_PROG_LIBTOOL
+
+
+dnl AC_OUTPUT(Makefile src/Makefile, echo timestamp > stamp-h)
+
+dnl Use -Wall if we have gcc.
+changequote(,)dnl
+if test "x$GCC" = "xyes"; then
+  case " $CFLAGS " in
+  *[\ \	]-Wall[\ \	]*) ;;
+  *) CFLAGS="$CFLAGS -Wall" ;;
+  esac
+fi
+changequote([,])dnl
+
+AC_OUTPUT([
+Makefile 
+include/Makefile
+include/metrutil/Makefile
+nibble/Makefile
+comm/Makefile
+log/Makefile
+strings/Makefile
+datast/Makefile
+extra/Makefile
+app/Makefile
+http/Makefile
+locks/Makefile
+lib/Makefile
+])
